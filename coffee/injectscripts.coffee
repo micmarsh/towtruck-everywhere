@@ -8,10 +8,11 @@ injectScript = (url) ->
     script.type = 'text/javascript'
     injectIntoPage script
 
-getInjectionURL = (fileName) ->
+getInjectionUrl = (fileName) ->
     chrome.extension.getURL "javascripts/#{fileName}.js" +
     "?nocache=#{new Date().getTime()}"
 
 window.Injector = {
     injectScript
+    getInjectionUrl
 }

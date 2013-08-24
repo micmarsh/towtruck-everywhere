@@ -5,13 +5,9 @@ SAMPLE_HOST = 'www.websocket.org'
 #kind of thing in a context script
 getUrls = -> [SAMPLE_HOST]
 
-Loader.waitFor 'Injector', (Injector) ->
-    alert window.location.host
+Loader.waitFor 'Injector', ({injectScript, getInjectionUrl}) ->
     if window.location.host in getUrls()
-        console.log Injector
-        Injector.injectScript "https://towtruck.mozillalabs.com/towtruck.js"
+        injectScript "https://towtruck.mozillalabs.com/towtruck.js"
+        injectScript getInjectionUrl 'page'
 
-Loader.waitFor 'TowTruck', (TowTruck) ->
-    console.log TowTruck
-    TowTruck window
 

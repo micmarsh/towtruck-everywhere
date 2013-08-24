@@ -1,10 +1,13 @@
 all: javascripts
 
-javascripts: coffee/*
-	coffee -cj javascripts/page/injectscripts.js coffee/injectscripts.coffee
-	coffee -cj javascripts/page/initialize.js coffee/initialize.coffee
+javascripts: coffee/* clean
+	coffee -cj javascripts/context/injectscripts.js coffee/injectscripts.coffee
+	coffee -cj javascripts/context/initialize.js coffee/initialize.coffee
 	coffee -cj javascripts/loader.js coffee/loader.coffee
-	cat javascripts/loader.js javascripts/page/* > javascripts/page.js
+	cat javascripts/loader.js javascripts/context/* > javascripts/context.js
+
+	coffee -cj javascripts/page/runtowtruck.js coffee/runtowtruck.coffee
+	cat javascripts/loader.js javascripts/page/runtowtruck.js > javascripts/page.js
 
 clean:
-	rm javascripts/*
+	rm -r javascripts/*

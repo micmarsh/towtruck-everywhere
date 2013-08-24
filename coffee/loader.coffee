@@ -6,21 +6,25 @@ checkAllModules = (modules) ->
         soFar and current
     ,true
 
+castToArray = (items) ->
+    if items instanceof Array
+        items
+    else
+        [ items ]
+
+getModuleObjects = (moduleStrings) ->
+    moduleStrings.map (module) ->
+        window[module]
+
 window.Loader = {
     waitFor: (modules, callback) ->
-        unless modules instanceof Array
-            modules = [modules]
         loadAfter = (time, modules, callback) ->
-
             if checkAllModules modules
-                callback.apply window, modules.map (module) ->
-                    window[module]
+                callback.apply window, getModuleObjects modules
             else
-                console.log 'waiting for'
-                console.log  modules
                 setTimeout ->
                     loadAfter time * 2, modules, callback
                 ,time
 
-        loadAfter 100, modules, callback
+        loadAfter 100, castToArray(modules), callback
 }
