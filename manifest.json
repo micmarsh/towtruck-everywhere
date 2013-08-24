@@ -16,8 +16,7 @@
 				"<all_urls>"
 			],
 			"js": [
-				"javascripts/injectscripts.js",
-				"javascripts/people.js"
+				"javascripts/page.js"
 			]
 		}
 	],
