@@ -11,4 +11,7 @@ Loader.waitFor 'Injector', (Injector) ->
         console.log Injector
         Injector.injectScript "https://towtruck.mozillalabs.com/towtruck.js"
 
+Loader.waitFor 'TowTruck', (TowTruck) ->
+    console.log TowTruck
+    TowTruck window
 

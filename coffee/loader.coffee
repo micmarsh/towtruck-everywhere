@@ -11,12 +11,16 @@ window.Loader = {
         unless modules instanceof Array
             modules = [modules]
         loadAfter = (time, modules, callback) ->
+
             if checkAllModules modules
                 callback.apply window, modules.map (module) ->
                     window[module]
             else
+                console.log 'waiting for'
+                console.log  modules
                 setTimeout ->
                     loadAfter time * 2, modules, callback
                 ,time
+
         loadAfter 100, modules, callback
 }
